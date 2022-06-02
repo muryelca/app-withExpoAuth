@@ -1,4 +1,4 @@
-import React, { createRef, FunctionComponent } from 'react';
+import * as React from 'react';
 import { WebView, WebViewNavigation } from 'react-native-webview';
 import { NativeSyntheticEvent } from 'react-native';
 import { WebViewMessage } from 'react-native-webview/lib/WebViewTypes';
@@ -26,8 +26,8 @@ const onMessage = async (event: NativeSyntheticEvent<WebViewMessage>) => {
 };
 }
 
-let webViewRef = createRef<WebView>();
-const LoginWebView: FunctionComponent = () => (
+let webViewRef = React.createRef<WebView>();
+const LoginWebView: React.FunctionComponent = () => (
   <WebView
     ref={webViewRef}
     source={{ uri: 'http://besafefrontend.herokuapp.com/' }}
