@@ -15,15 +15,9 @@ const onNavigationStateChange = (navigationState: WebViewNavigation) => {
   }
 };
 
-const onMessage = async (event: NativeSyntheticEvent<WebViewMessage>) => {
+const onMessage = (event: NativeSyntheticEvent<WebViewMessage>) => {
   const { data } = event.nativeEvent;
-
-  if (data.includes('Cookie:')) {
-    const storedCookies = await CookieManager.get(
-      'http://besafefrontend.herokuapp.com/', 
-      true
-    );
-};
+  CookieManager.get('http://besafefrontend.herokuapp.com/');
 }
 
 let webViewRef = React.createRef<WebView>();
