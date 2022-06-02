@@ -2,7 +2,6 @@ import React, { createRef, FunctionComponent } from 'react';
 import { WebView, WebViewNavigation } from 'react-native-webview';
 import { NativeSyntheticEvent } from 'react-native';
 import { WebViewMessage } from 'react-native-webview/lib/WebViewTypes';
-import CookieManager from '@react-native-community/cookies';
 
 const CHECK_COOKIE: string = `
   ReactNativeWebView.postMessage("Cookie: " + document.cookie);
@@ -15,24 +14,20 @@ const onNavigationStateChange = (navigationState: WebViewNavigation) => {
   }
 };
 
-const onMessage = async (event: NativeSyntheticEvent<WebViewMessage>) => {
+const onMessage = (event: NativeSyntheticEvent<WebViewMessage>) => {
   const { data } = event.nativeEvent;
 
   if (data.includes('Cookie:')) {
-    const storedCookies = await CookieManager.get(
-      'http://besafefrontend.herokuapp.com/', 
-      true
-    );
+  }
 };
-}
 
 let webViewRef = createRef<WebView>();
-const LoginWebView: FunctionComponent = () => (
-  <WebView
-    ref={webViewRef}
-    source={{ uri: 'http://besafefrontend.herokuapp.com/' }}
-    onNavigationStateChange={onNavigationStateChange}
-    onMessage={onMessage}
-    sharedCookiesEnabled
-  />
-);
+const LoginWebView: FunctionComponent = () => {
+  return (
+    <WebView
+      ref={webViewRef}
+      source={{ uri: 'http://besafefrontend.herokuapp.com/' }}
+      onNavigationStateChange={onNavigationStateChange}
+      onMessage={onMessage} />
+  );
+};

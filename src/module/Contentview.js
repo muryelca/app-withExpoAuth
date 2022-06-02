@@ -2,8 +2,6 @@ import React, { useState, useRef } from 'react';
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import NavigationView from './NavigationView';
-
 const styles = {
     container: {
         flex: 1,
@@ -13,14 +11,6 @@ const styles = {
 
 const ContentView = () => {
     const webViewRef = useRef();
-    const [canGoBack, setCanGoBack] = useState(false);
-    const [canGoForward, setCanGoFoward] = useState(false);
-    const handleBackPress = () => {
-        webViewRef.current.goBack();
-    };
-    const handleFowardPress = () => {
-        webViewRef.current.goFoward();
-    };
 
     return (
     <View style={styles.container}>
