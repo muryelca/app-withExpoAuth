@@ -1,3 +1,3 @@
 # app coala saude
 
-## utilizando expo
+## utilizando expo e React Native View
